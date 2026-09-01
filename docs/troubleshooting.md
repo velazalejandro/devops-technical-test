@@ -1,4 +1,4 @@
-Incidencia 1. Jenkins muestra: docker: command not found. ¿Qué comprobarías y cómo lo solucionarías?
+## Incidencia 1. Jenkins muestra: docker: command not found. ¿Qué comprobarías y cómo lo solucionarías?
 Solución: Primero comprobaría si Docker está instalado en el servidor donde se ejecuta Jenkins:
 docker --version
 which docker
@@ -17,7 +17,7 @@ sudo usermod -aG docker jenkins
 
 
 
-Incidencia 2. La imagen Docker se construye correctamente, pero curl http://localhost:8080/health devuelve Connection refused. Indica los pasos y comandos que utilizarías para localizar el problema.
+## Incidencia 2. La imagen Docker se construye correctamente, pero curl http://localhost:8080/health devuelve Connection refused. Indica los pasos y comandos que utilizarías para localizar el problema.
 Solución: 
 Primero comprobaría si el contenedor está ejecutándose:
 docker ps
@@ -61,12 +61,12 @@ docker exec <container_id> curl http://localhost:8080/health
 
 
 
-Incidencia 3. El pipeline funcionaba correctamente ayer, pero hoy falla al descargar una dependencia. ¿Qué revisarías antes de modificar el pipeline?
+## Incidencia 3. El pipeline funcionaba correctamente ayer, pero hoy falla al descargar una dependencia. ¿Qué revisarías antes de modificar el pipeline?
 Solución: Revisaría los logs de la última ejecución de la pipeline en Jenkins para poder identificar el error exacto. Buscaría el mensaje de error concreto, la dependencia afectada y el repositorio desde el que se intenta descargar. Sobre el repositorio comprobaría si está disponible y su versión por si ha cambiado.
 
 
 
-Incidencia 4. El despliegue se completa, pero la nueva versión no funciona correctamente. Explica cómo realizarías un rollback de forma segura.
+## Incidencia 4. El despliegue se completa, pero la nueva versión no funciona correctamente. Explica cómo realizarías un rollback de forma segura.
 Solución: Revisaría los logs de la aplicación para determinar que es necesario realizar un rollback.
 
 Antes de ejecutarlo, identificaría la versión actualmente desplegada y la última versión estable, comprobando que la versión anterior está disponible y que tenemos una forma segura de restaurarla.
@@ -82,6 +82,6 @@ Mantendría monitorizado el sistema durante un periodo de tiempo para asegurar q
 Finalmente documentaría el rollback indicando la versión afectada, la versión restaurada, el motivo y los resultados de las comprobaciones.
 
 
-Incidencia 5. Un desarrollador te comunica: “Mi pipeline falla, pero en local funciona”. Describe brevemente cómo abordarías la incidencia.
+## Incidencia 5. Un desarrollador te comunica: “Mi pipeline falla, pero en local funciona”. Describe brevemente cómo abordarías la incidencia.
 Solución: Revisaría los logs de la ejecución de Jenkins para poder saber donde falla el pipeline.
 Comprobaría la versión de las herramientas, la versión de las dependencias, variables, permisos y conectividad. También revisaría el código que funciona en modo local.
