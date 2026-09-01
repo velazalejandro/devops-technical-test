@@ -1,18 +1,18 @@
 ## Incidencia 1. Jenkins muestra: docker: command not found. ¿Qué comprobarías y cómo lo solucionarías?
 Solución: Primero comprobaría si Docker está instalado en el servidor donde se ejecuta Jenkins:
-docker --version
-which docker
+- docker --version
+- which docker
 
 Si Docker está instalado, comprobaría que el ejecutable está disponible en el PATH del usuario con el que se ejecuta Jenkins:
-sudo -u jenkins which docker
-sudo -u jenkins docker --version
+- sudo -u jenkins which docker
+- sudo -u jenkins docker --version
 
 También comprobaría el servicio de Docker mediante systemctl status.
 
 Si el ejecutable existe pero Jenkins no lo encuentra, revisaría la configuración del PATH y la configuración de herramientas de Jenkins en Manage Jenkins - Tools (Global Tool Configuration).
 
 Por último, comprobaría los permisos del usuario jenkins para comunicarse con Docker. Si es necesario, añadiría el usuario jenkins al grupo docker y reiniciaría el servicio de Jenkins:
-sudo usermod -aG docker jenkins
+- sudo usermod -aG docker jenkins
 
 
 
@@ -20,44 +20,44 @@ sudo usermod -aG docker jenkins
 ## Incidencia 2. La imagen Docker se construye correctamente, pero curl http://localhost:8080/health devuelve Connection refused. Indica los pasos y comandos que utilizarías para localizar el problema.
 Solución: 
 Primero comprobaría si el contenedor está ejecutándose:
-docker ps
+- docker ps
 
 Si no aparece, comprobaría los contenedores detenidos:
-docker ps -a
+- docker ps -a
 
 
 Si el contenedor se ha detenido, revisaría sus logs:
-docker logs <container_id>
+- docker logs <container_id>
 
 
 También comprobaría el estado del contenedor:
-docker inspect <container_id>
+- docker inspect <container_id>
 
 
 A continuación, comprobaría que el puerto 8080 está correctamente publicado en el host:
-docker ps
+- docker ps
 
 
 Por ejemplo, debería aparecer un mapeo similar a:
-0.0.0.0:8080->8080/tcp
+- 0.0.0.0:8080->8080/tcp
 
 
 Si no existe el mapeo, revisaría cómo se ha iniciado el contenedor y utilizaría la opción -p correspondiente, por ejemplo:
-docker run -p 8080:8080 <imagen>
+- docker run -p 8080:8080 <imagen>
 
 
 Después comprobaría qué puertos están escuchando en el sistema:
-ss -lntp
+- ss -lntp
 
 
 También comprobaría desde dentro del contenedor si la aplicación está escuchando en el puerto esperado:
-docker exec -it <container_id> ss -lntp
+- docker exec -it <container_id> ss -lntp
 
 
 Si la aplicación está escuchando dentro del contenedor, pero no se puede acceder desde el host, revisaría el mapeo de puertos y la configuración de red de Docker.
 
 Finalmente, probaría el endpoint desde el propio contenedor para determinar si el problema está en la aplicación o en la comunicación entre el host y el contenedor:
-docker exec <container_id> curl http://localhost:8080/health
+- docker exec <container_id> curl http://localhost:8080/health
 
 
 
