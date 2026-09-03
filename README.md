@@ -161,8 +161,11 @@ Por último hacemos git push y con esto se añade el contenido nuevo al reposito
 <img width="810" height="310" alt="image" src="https://github.com/user-attachments/assets/62c616fc-24a0-4489-ad60-6e149e9e19b1" />
 
 DOCKER:
+
 Vamos a realizar los pasos de Docker.
+
 Primero asegurarnos de tener docker instalado en el sistema.
+
 Instalamos docker: sudo apt install docker.io
 
 <img width="812" height="552" alt="image" src="https://github.com/user-attachments/assets/88555a30-9bc9-4886-8d4f-a623cf3d3ff4" />
@@ -216,13 +219,13 @@ A continuación creamos el Dockerfile:
 
 <img width="692" height="521" alt="image" src="https://github.com/user-attachments/assets/2e3ff3c5-26bb-46e5-80f7-1ef128b2ef7b" />
 
-En la primera línea de FROM añadimos una imagen de python optimizada.
-En la segunda línea de WORKDIR es donde se encuentra el directorio de trabajo de la aplicación que está situada en el directorio /app.
-En la tercera línea añadimos las variables de entorno: PYTHONDONTWRITEBYTECODE, PYTHONUNBUFFERED.
-En la cuarta línea creamos un nuevo usuario no root.
-En la quinta línea copiamos el archivo requirements de Flask.
-En la octava línea le asignamos permisos de lectura al usuario para que pueda ver el contenido del directorio de la aplicación.
-En la décima línea asignamos el puerto 5000.
+- En la primera línea de FROM añadimos una imagen de python optimizada.
+- En la segunda línea de WORKDIR es donde se encuentra el directorio de trabajo de la aplicación que está situada en el directorio /app.
+- En la tercera línea añadimos las variables de entorno: PYTHONDONTWRITEBYTECODE, PYTHONUNBUFFERED.
+- En la cuarta línea creamos un nuevo usuario no root.
+- En la quinta línea copiamos el archivo requirements de Flask.
+- En la octava línea le asignamos permisos de lectura al usuario para que pueda ver el contenido del directorio de la aplicación.
+- En la décima línea asignamos el puerto 5000.
 
 Una vez listo el Dockerfile, creamos el archivo .dockerignore:
 
@@ -234,12 +237,12 @@ Ya una vez listo .dockerignore, vamos a preparar el docker-compose:
 
 <img width="1056" height="384" alt="image" src="https://github.com/user-attachments/assets/5ff2d85e-2381-443e-b95d-ea0885712667" />
 
-build construye nuestra imagen usando el Dockerfile.
-Con los puertos 5000:5000 podremos acceder a Flask desde la máquina.
-Con APP_VERSION creamos una variable de entorno.
-Con la orden restart: unless-stopped, Docker reiniciará el contenedor si se cae.
-Con healthcheck, Docker comprobará automáticamente /health.
-Con start_period, damos 10 segundos a Flask para arrancar.
+- build construye nuestra imagen usando el Dockerfile.
+- Con los puertos 5000:5000 podremos acceder a Flask desde la máquina.
+- Con APP_VERSION creamos una variable de entorno.
+- Con la orden restart: unless-stopped, Docker reiniciará el contenedor si se cae.
+- Con healthcheck, Docker comprobará automáticamente /health.
+- Con start_period, damos 10 segundos a Flask para arrancar.
 
 Una vez configurados todos los archivos de Docker, vamos a comprobar si Docker puede construir la aplicación.
 Ejecutamos docker compose build para la construcción.
