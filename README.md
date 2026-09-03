@@ -16,8 +16,11 @@ Software utilizado para la ejecución de las pruebas:
 
 ## Instalación
 PREPARACIÓN DEL ENTORNO
+
 Nombre del repositorio en GitHub: devops-technical-test
+
 Utilizamos una máquina virtual de Ubuntu versión 20.04. para la realización de todas las pruebas.
+
 Abrimos la terminal de Ubuntu y primero clonamos nuestro repositorio de GitHub: git clone https://github.com/velazalejandro/devops-technical-test.git
 
 <img width="877" height="681" alt="image" src="https://github.com/user-attachments/assets/ec524cca-ac4b-463c-85c1-d05c879e213a" />
