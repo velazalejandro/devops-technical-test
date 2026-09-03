@@ -1,6 +1,11 @@
 # prueba-devops
 
 ## Arquitectura
+El flujo principal es:
+
+GitHub - Jenkins - Tests/Validación - Docker Build - Deploy - Health Check
+
+Jenkins obtiene el código desde GitHub, ejecuta las comprobaciones definidas, construye la imagen Docker, despliega la aplicación y finalmente comprueba que el endpoint /health responde correctamente.
 
 
 ## Requisitos
@@ -439,8 +444,13 @@ El usuario que ejecuta Jenkins debe disponer únicamente de los permisos necesar
 Las contraseñas, tokens y claves utilizadas por Jenkins deben renovarse en un cierto periodo de tiempo. Al realizar la rotación, se actualizará la credencial almacenada en Jenkins sin necesidad de modificar el código fuente del proyecto.
 
 
-
 ## Uso de IA
+He utilizado la herramienta ChatGPT como apoyo en las partes de montar el Escenario de la aplicación mediante Python y Flask.
 
 
 ## Mejoras
+- Añadir SonarQube para el análisis estático de código.
+- Implementar sistemas de monitorización y alertas para conocer el estado de la aplicación.
+- Implementar una estrategia de rollback en caso de que un despliegue produzca errores.
+- Separar los entornos de desarrollo, pruebas y producción.
+- Incorporar pruebas automatizadas más completas incluyendo pruebas unitarias.
